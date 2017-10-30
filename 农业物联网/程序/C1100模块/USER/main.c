@@ -14,15 +14,9 @@ TCP/IP测试
 	uart_init(115200);	 	                        //串口初始化为115200
  	usmart_dev.init(72);		                    //初始化USMART		
  	LED_Init();		  		  	                    //初始化与LED连接的硬件接口
-	KEY_Init();					                    //初始化按键
-	LCD_Init();			   	   	                    //初始化LCD   
-	W25QXX_Init();			  	                    //初始化W25Q128
-	tp_dev.init();				                    //初始化触摸屏
 	usart3_init(115200);		                    //初始化串口3 
  	my_mem_init(SRAMIN);		                    //初始化内部内存池
 	exfuns_init();				                    //为fatfs相关变量申请内存  
- 	f_mount(fs[0],"0:",1); 	                        //挂载SD卡 
- 	f_mount(fs[1],"1:",1); 	                        //挂载FLASH.
 	key=KEY_Scan(0);  
 	if(key==KEY0_PRES&&((tp_dev.touchtype&0X80)==0))//强制校准
 	{
