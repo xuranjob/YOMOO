@@ -31,6 +31,7 @@
 ..\obj\usart2.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\usart2.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\usart2.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\usart2.o: ..\SYSTEM\malloc\malloc.h
 ..\obj\usart2.o: ..\SYSTEM\delay\delay.h
 ..\obj\usart2.o: ..\SYSTEM\usart\usart.h
 ..\obj\usart2.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
@@ -38,19 +39,7 @@
 ..\obj\usart2.o: ..\USER\main.h
 ..\obj\usart2.o: ..\USMART\usmart.h
 ..\obj\usart2.o: ..\USMART\usmart_str.h
-..\obj\usart2.o: ..\SYSTEM\malloc\malloc.h
-..\obj\usart2.o: ..\FATFS\src\ff.h
-..\obj\usart2.o: ..\FATFS\src\integer.h
-..\obj\usart2.o: ..\FATFS\src\ffconf.h
-..\obj\usart2.o: ..\FATFS\exfuns\exfuns.h
-..\obj\usart2.o: ..\TEXT\text.h
-..\obj\usart2.o: ..\TEXT\fontupd.h
-..\obj\usart2.o: ..\HARDWARE\TOUCH\touch.h
-..\obj\usart2.o: ..\HARDWARE\TOUCH\ott2001a.h
-..\obj\usart2.o: ..\HARDWARE\TOUCH\gt9147.h
-..\obj\usart2.o: ..\HARDWARE\TOUCH\ft5206.h
 ..\obj\usart2.o: ..\HARDWARE\USART2\usart2.h
-..\obj\usart2.o: ..\HARDWARE\USART3\usart3.h
 ..\obj\usart2.o: ..\HARDWARE\SIM800C\sim800c.h
 ..\obj\usart2.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\usart2.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

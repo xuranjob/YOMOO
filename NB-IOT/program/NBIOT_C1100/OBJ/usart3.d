@@ -51,6 +51,7 @@
 ..\obj\usart3.o: ..\HARDWARE\TOUCH\ft5206.h
 ..\obj\usart3.o: ..\HARDWARE\USART2\usart2.h
 ..\obj\usart3.o: ..\HARDWARE\USART3\usart3.h
+..\obj\usart3.o: ..\HARDWARE\SDIO\sdio_sdcard.h
 ..\obj\usart3.o: ..\HARDWARE\SIM800C\sim800c.h
 ..\obj\usart3.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\usart3.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

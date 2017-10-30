@@ -32,6 +32,15 @@
 ..\obj\usmart_config.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\usmart_config.o: ..\SYSTEM\delay\delay.h
 ..\obj\usmart_config.o: ..\SYSTEM\sys\sys.h
-..\obj\usmart_config.o: ..\TEXT\text.h
-..\obj\usmart_config.o: ..\TEXT\fontupd.h
 ..\obj\usmart_config.o: ..\HARDWARE\SIM800C\sim800c.h
+..\obj\usmart_config.o: ..\USER\main.h
+..\obj\usmart_config.o: ..\SYSTEM\malloc\malloc.h
+..\obj\usmart_config.o: ..\SYSTEM\usart\usart.h
+..\obj\usmart_config.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\usmart_config.o: ..\HARDWARE\LED\led.h
+..\obj\usmart_config.o: ..\USER\main.h
+..\obj\usmart_config.o: ..\HARDWARE\USART2\usart2.h
+..\obj\usmart_config.o: ..\HARDWARE\SIM800C\sim800c.h
+..\obj\usmart_config.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\usmart_config.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\usmart_config.o: ..\HARDWARE\TIMER\timer.h

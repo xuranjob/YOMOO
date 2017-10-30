@@ -78,11 +78,11 @@ SD_Error SD_Init(void)
  	//SDIO外设寄存器设置为默认值 			   	   
 	SDIO_DeInit();
  
-	NVIC_InitStructure.NVIC_IRQChannel = SDIO_IRQn;			//SDIO中断配置
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;	//抢占优先级0 
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;					//子优先级0 
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
-  NVIC_Init(&NVIC_InitStructure);  	  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
+//  NVIC_InitStructure.NVIC_IRQChannel = SDIO_IRQn;			//SDIO中断配置
+//  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;	//抢占优先级0 
+//  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;					//子优先级0 
+//  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
+//  NVIC_Init(&NVIC_InitStructure);  	  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
 
   errorstatus=SD_PowerON();			//SD卡上电
 

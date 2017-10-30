@@ -37,10 +37,10 @@ void USART2_IRQHandler(void)
 		{ 
 			if(USART2_RX_STA<USART2_MAX_RECV_LEN)	//还可以接收数据
 			{
-				TIM_SetCounter(TIM7,0);             //计数器清空          				
-				if(USART2_RX_STA==0) 				//使能定时器7的中断 
+				TIM_SetCounter(TIM2,0);             //计数器清空          				
+				if(USART2_RX_STA==0) 				//使能定时器4的中断 
 				{
-					TIM_Cmd(TIM7,ENABLE);           //使能定时器7
+					TIM_Cmd(TIM2,ENABLE);           //使能定时器4
 				}
 				USART2_RX_BUF[USART2_RX_STA++]=res;	//记录接收到的值	 
 			}else 
@@ -62,8 +62,8 @@ void usart2_init(u32 bound)
 	GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);	                       //GPIOB时钟
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);                          //串口3时钟使能
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);	                       //GPIOA时钟
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);                          //串口2时钟使能
 
  	USART_DeInit(USART2);  //复位串口2
     //USART2_TX   PA2
@@ -93,16 +93,16 @@ void usart2_init(u32 bound)
     USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);  //开启中断   
 	
 	//设置中断优先级
-	NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;//抢占优先级2
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		//子优先级3
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
 	NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
 	
 	
-	TIM7_Int_Init(99,7199);		//10ms中断
+	TIM2_Int_Init(99,7199);		//10ms中断
 	USART2_RX_STA=0;		    //清零
-	TIM_Cmd(TIM7,DISABLE);		//关闭定时器7
+	TIM_Cmd(TIM2,DISABLE);		//关闭定时器2
 
 }
 
