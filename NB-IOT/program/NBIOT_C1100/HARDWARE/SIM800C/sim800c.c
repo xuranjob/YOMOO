@@ -130,12 +130,23 @@ u8 sim800c_hex2chr(u8 hex)
 //SIM800C主测试程序
 void sim800c_test(void)
 {
-	while(sim800c_send_cmd("AT","OK",200))//检测是否应答AT指令 
-	{
-		printf ("%s\r\n","fail");//发送命令       
-	} 	 
-    printf("%s\r\n","success");//发送命令   
-	
+//	while(sim800c_send_cmd("AT","OK",200))//检测是否应答AT指令 
+//	{
+//		printf ("%s\r\n","fail");//发送命令       
+//	} 	 
+//    printf("%s\r\n",USART2_RX_BUF);//发送命令 
+//    sim800c_send_cmd("AT+CSQ","",200);//检测是否应答AT指令 
+//    printf("%s\r\n",USART2_RX_BUF);  
+//    sim800c_send_cmd("AT+CEREG=1","",200);//检测是否应答AT指令  
+//    printf("%s\r\n",USART2_RX_BUF);   
+//    sim800c_send_cmd("AT+CGREG=1","",200);
+//    printf("%s\r\n",USART2_RX_BUF); 
+//    sim800c_send_cmd("AT+COPS?","",200);
+//    printf("%s\r\n",USART2_RX_BUF);
+//    while(sim800c_send_cmd("AT+LSIPPROFILE=1,"CTNB"","OK",200))
+//    {
+//      printf ("%s\r\n","TCP,fail");
+//    }
 }
 
 
