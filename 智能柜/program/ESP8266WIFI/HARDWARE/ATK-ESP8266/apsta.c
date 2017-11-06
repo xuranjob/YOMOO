@@ -30,10 +30,10 @@ u8 atk_8266_apsta_test(void)
 	u8 constate=0;	//连接状态
 	p=mymalloc(SRAMIN,100);							//申请32字节内存
 	atk_8266_send_cmd("AT+CWMODE=3","OK",50);		//设置WIFI AP+STA模式
-//	atk_8266_send_cmd("AT+RST","OK",20);		//重启模块 
-//	delay_ms(1000);         //延时2S等待重启成功
-//	delay_ms(1000);
-//	delay_ms(1000);
+	atk_8266_send_cmd("AT+RST","OK",20);		    //重启模块 
+	delay_ms(1000);                                 //延时2S等待重启成功
+	delay_ms(1000);
+	delay_ms(1000);
 	//设置模块AP模式的WIFI网络名称/加密方式/密码，这几个参数看自己喜好设置
 	sprintf((char*)p,"AT+CWSAP=\"%s\",\"%s\",1,4",wifiap_ssid,wifiap_password);//设置无线参数:ssid,密码
 	atk_8266_send_cmd(p,"OK",1000);					//设置AP模式参数
@@ -42,10 +42,7 @@ u8 atk_8266_apsta_test(void)
 	atk_8266_send_cmd(p,"WIFI GOT IP",1000);						//连接目标路由器，并获得IP
 	while(atk_8266_send_cmd("AT+CIFSR","STAIP",20));   //检测是否获得STA IP
 	while(atk_8266_send_cmd("AT+CIFSR","APIP",20));   //检测是否获得AP IP
-//	while((atk_8266_consta_check()-'2'));   //获得IP
-	LCD_Clear(WHITE);
-	POINT_COLOR=RED;
-	Show_Str(30,30,200,16,"ATK-ESP AP+STA模式测试",16,0); 
+	printf("ATK-ESP AP+STA模式测试\r\n"); 
 	atk_8266_send_cmd("AT+CIPMUX=1","OK",50);   //0：单连接，1：多连接
 	delay_ms(500);
 	sprintf((char*)p,"AT+CIPSERVER=1,%s",(u8*)portnum);
@@ -54,39 +51,24 @@ u8 atk_8266_apsta_test(void)
 	atk_8266_send_cmd("AT+CIPSTO=1200","OK",50);     //设置服务器超时时间
 	
 PRESTA:
-	netpro=atk_8266_netpro_sel(50,30,(u8*)ATK_ESP8266_CWMODE_TBL[0]);	//AP+STA模式网络模式选择
+	netpro=atk_8266_netpro_sel();	//AP+STA模式网络模式选择
 	if(netpro&0X02)   //STA UDP
 	{
-				LCD_Clear(WHITE);
-				POINT_COLOR=RED;
-				Show_Str_Mid(0,30,"ATK-ESP WIFI-STA测试",16,240); 
-				Show_Str(30,50,200,16,"正在配置ATK-ESP模块,请稍等...",12,0);
-				if(atk_8266_ip_set("WIFI-STA远端UDP IP设置","UDP模式",(u8*)portnum,ipbuf))goto PRESTA;	//IP输入
-				sprintf((char*)p,"AT+CIPSTART=0,\"UDP\",\"%s\",%s",ipbuf,(u8*)portnum);    //配置目标UDP服务器,及ID号，STA模式下为0
-				LCD_Clear(WHITE);
-				Show_Str_Mid(0,30,"ATK-ESP WIFI-STA测试",16,240); 
-				Show_Str(30,50,200,16,"正在配置ATK-ESP模块,请稍等...",12,0);
+				printf("正在配置ATK-ESP模块,请稍等...\r\n");
+				sprintf((char*)p,"AT+CIPSTART=0,\"UDP\",\"%s\",%s",(u8*)ipaddr,(u8*)portnum);    //配置目标UDP服务器,及ID号，STA模式下为0
 				atk_8266_send_cmd(p,"OK",200);
+                printf("WIFI-STA远端UDP配置完成\r\n");
 				netpro=atk_8266_mode_cofig(netpro);     //AP模式网络模式配置			
 	}
 	else     //TCP
 	{
 		if(netpro&0X01)     //STA TCP Client  
 		{
-			LCD_Clear(WHITE);
-			POINT_COLOR=RED;
-			Show_Str_Mid(0,30,"ATK-ESP WIFI-STA 测试",16,240); 
-			Show_Str(30,50,200,16,"正在配置ATK-ESP模块,请稍等...",12,0);
-			if(atk_8266_ip_set("WIFI-STA 远端IP设置",(u8*)ATK_ESP8266_WORKMODE_TBL[netpro],(u8*)portnum,ipbuf))goto PRESTA;	//IP输入
-			sprintf((char*)p,"AT+CIPSTART=0,\"TCP\",\"%s\",%s",ipbuf,(u8*)portnum);    //配置目标TCP服务器,及ID号，STA模式下为0
+			printf("正在配置ATK-ESP模块,请稍等...\r\n");
+			sprintf((char*)p,"AT+CIPSTART=0,\"TCP\",\"%s\",%s",(u8*)ipaddr,(u8*)portnum);    //配置目标TCP服务器,及ID号，STA模式下为0
 			while(atk_8266_send_cmd(p,"OK",200))
 			{
-				LCD_Clear(WHITE);
-				POINT_COLOR=RED;
-				Show_Str_Mid(0,40,"WK_UP:返回重选",16,240);
-				Show_Str_Mid(0,80,"ATK-ESP 连接TCP Server失败",12,240); //连接失败	 
-				key=KEY_Scan(0);
-				if(key==WKUP_PRES)goto PRESTA;
+				printf("ATK-ESP 连接TCP Server失败\r\n"); //连接失败	 
 			}	
 			netpro=atk_8266_mode_cofig(netpro);     //AP模式网络模式配置	
 		}

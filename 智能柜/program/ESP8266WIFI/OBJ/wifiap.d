@@ -1,5 +1,5 @@
-..\obj\wifiap.o: ..\ATK-ESP8266\wifiap.c
-..\obj\wifiap.o: ..\ATK-ESP8266\common.h
+..\obj\wifiap.o: ..\HARDWARE\ATK-ESP8266\wifiap.c
+..\obj\wifiap.o: ..\HARDWARE\ATK-ESP8266\common.h
 ..\obj\wifiap.o: ..\SYSTEM\sys\sys.h
 ..\obj\wifiap.o: ..\USER\stm32f10x.h
 ..\obj\wifiap.o: ..\CORE\core_cm3.h

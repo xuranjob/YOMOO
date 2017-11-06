@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\ATK-ESP8266;..\CORE;..\FATFS\src;..\FATFS\exfuns;..\HARDWARE\24CXX;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\LCD;..\HARDWARE\LED;..\HARDWARE\SDIO;..\HARDWARE\SPI;..\HARDWARE\TIMER;..\HARDWARE\TOUCH;..\HARDWARE\USART3;..\HARDWARE\W25QXX;..\MALLOC;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\TEXT;..\USER;..\USMART;..\HARDWARE\RELAY;..\HARDWARE\CH9121</IncludePath>
+              <IncludePath>..\CORE;..\FATFS\src;..\FATFS\exfuns;..\HARDWARE\24CXX;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\LCD;..\HARDWARE\LED;..\HARDWARE\SDIO;..\HARDWARE\SPI;..\HARDWARE\TIMER;..\HARDWARE\TOUCH;..\HARDWARE\USART3;..\HARDWARE\W25QXX;..\MALLOC;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\TEXT;..\USER;..\USMART;..\HARDWARE\RELAY;..\HARDWARE\CH9121;..\HARDWARE\ATK-ESP8266</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -456,9 +456,14 @@
               <FilePath>..\HARDWARE\CH9121\ch9121.c</FilePath>
             </File>
             <File>
-              <FileName>ch9121.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\HARDWARE\CH9121\ch9121.h</FilePath>
+              <FileName>common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\ATK-ESP8266\common.c</FilePath>
+            </File>
+            <File>
+              <FileName>wifista.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\ATK-ESP8266\wifista.c</FilePath>
             </File>
           </Files>
         </Group>

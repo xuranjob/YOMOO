@@ -17,21 +17,24 @@ Library Manager: ArmAr.exe V5.06 update 5 (build 528)
 Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
 CPU DLL:         SARMCM3.DLL V5.24.1
 Dialog DLL:      DARMSTM.DLL V1.68.0.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
+Target DLL:      CMSIS_AGDI.dll V1.28.3.0
 Dialog DLL:      TARMSTM.DLL V1.66.0.0
  
 <h2>Project:</h2>
 D:\YOMOO\ÖÇÄÜ¹ñ\program\ESP8266WIFI\USER\ATK_ESP8266.uvprojx
-Project File Date:  11/03/2017
+Project File Date:  11/06/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'F:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling main.c...
+compiling wifista.c...
+..\HARDWARE\ATK-ESP8266\wifista.c(107): warning:  #111-D: statement is unreachable
+  	myfree(SRAMIN,p);		//ÊÍ·ÅÄÚ´æ 
+..\HARDWARE\ATK-ESP8266\wifista.c: 1 warning, 0 errors
 linking...
-Program Size: Code=8892 RO-data=520 RW-data=368 ZI-data=1091056  
+Program Size: Code=16008 RO-data=1188 RW-data=452 ZI-data=1091036  
 FromELF: creating hex file...
-"..\OBJ\ATK_ESP8266.axf" - 0 Error(s), 0 Warning(s).
+"..\OBJ\ATK_ESP8266.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,7 +48,7 @@ Package Vendor: Keil
   F:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

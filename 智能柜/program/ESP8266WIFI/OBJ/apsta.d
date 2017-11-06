@@ -1,5 +1,5 @@
-..\obj\apsta.o: ..\ATK-ESP8266\apsta.c
-..\obj\apsta.o: ..\ATK-ESP8266\common.h
+..\obj\apsta.o: ..\HARDWARE\ATK-ESP8266\apsta.c
+..\obj\apsta.o: ..\HARDWARE\ATK-ESP8266\common.h
 ..\obj\apsta.o: ..\SYSTEM\sys\sys.h
 ..\obj\apsta.o: ..\USER\stm32f10x.h
 ..\obj\apsta.o: ..\CORE\core_cm3.h

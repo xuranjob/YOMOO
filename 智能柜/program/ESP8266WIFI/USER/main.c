@@ -19,11 +19,12 @@
  	usmart_dev.init(72);		//初始化USMART		
  	Relay_Init();               //继电器IO初始化
     ch9121_Init();              //CH9121初始化
-//	usart3_init(115200);		//初始化串口3 
+	usart3_init(115200);		//初始化串口3 
  	my_mem_init(SRAMIN);		//初始化内部内存池
 
  //   GPIO_ResetBits(GPIOD,GPIO_Pin_3);
 //    Relay_test();
+    atk_8266_test();
 }
 
 

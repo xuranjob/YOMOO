@@ -11,6 +11,8 @@
 "..\obj\usart3.o"
 "..\obj\relay.o"
 "..\obj\ch9121.o"
+"..\obj\common.o"
+"..\obj\wifista.o"
 "..\obj\misc.o"
 "..\obj\stm32f10x_dma.o"
 "..\obj\stm32f10x_exti.o"
