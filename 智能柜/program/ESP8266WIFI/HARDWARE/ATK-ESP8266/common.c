@@ -19,12 +19,12 @@
 const u8* serverportnum="8086";
 //设置客户端，目标地址和端口号.
 const u8* portnum="11000";	
-const u8* ipaddr="139.196.105.233";
+const u8*  ipaddr="139.196.105.233";
 
 //WIFI STA模式,设置要去连接的路由器无线参数,请根据你自己的路由器设置,自行修改.
-const u8* wifista_ssid="AndroidAP3B00";			//路由器SSID号
+const u8* wifista_ssid="Yomoo_Office";			//路由器SSID号
 const u8* wifista_encryption="wpawpa2_aes";	//wpa/wpa2 aes加密方式
-const u8* wifista_password="xr123456"; 	//连接密码
+const u8* wifista_password="jiayou110"; 	//连接密码
 
 //WIFI AP模式,模块对外的无线参数,可自行修改.
 const u8* wifiap_ssid="ATK-ESP8266";			//对外SSID号
@@ -190,7 +190,29 @@ u8 atk_8266_netpro_sel(void)
     netpro=1;
 	return netpro;//返回网络模式选择值 
 } 
-
+//TCP连接
+void atk_8266_linktcp(void)
+{
+    u8 *p;
+    u8 constate=0;	//连接状态
+    p=mymalloc(SRAMIN,32);  
+    BACK:
+        sprintf((char*)p,"AT+CIPSTART=\"TCP\",\"%s\",%s",(u8*)ipaddr,(u8*)portnum);    //配置目标TCP服务器
+        while(atk_8266_send_cmd(p,"OK",200))
+        {
+           printf("ATK-ESP 连接TCP Server失败"); //连接失败	
+        }
+        constate=atk_8266_consta_check();//得到连接状态
+        if(constate=='+')
+            printf("连接成功\r\n");      //连接状态
+        else 
+        {
+          printf("连接失败....\r\n"); 
+          goto BACK;
+        } 
+     myfree(SRAMIN,p);        
+        
+}    
 //ATK-ESP8266模块测试主函数
 void atk_8266_test(void)
 {

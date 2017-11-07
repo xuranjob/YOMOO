@@ -34,9 +34,12 @@ u8 atk_8266_wifista_test(void)
 	delay_ms(1000);
     delay_ms(1000);
 	//设置连接到的WIFI网络名称/加密方式/密码,这几个参数需要根据您自己的路由器设置进行修改!! 
-	sprintf((char*)p,"AT+CWJAP=\"%s\",\"%s\"",wifista_ssid,wifista_password);//设置无线参数:ssid,密码
-	while(atk_8266_send_cmd(p,"WIFI GOT IP",300));					//连接目标路由器,并且获得IP
-    
+	sprintf((char*)p,"AT+CWJAP_DEF=\"%s\",\"%s\"",wifista_ssid,wifista_password);//设置无线参数:ssid,密码
+	while(atk_8266_send_cmd(p,"WIFI GOT IP",400));					//连接目标路由器,并且获得IP
+    atk_8266_send_cmd("AT+CIPMUX=0","OK",50);   //0：单连接，1：多连接
+    printf("ESP8266连接上路由\r\n");
+    delay_ms(1000);
+PRESTA:    
 	if(netpro&0X02)   //UDP
 	{ 
 				printf("正在配置ATK-ESP模块,请稍等...\r\n");
@@ -46,27 +49,24 @@ u8 atk_8266_wifista_test(void)
 				delay_ms(200);
 				while(atk_8266_send_cmd(p,"OK",500));
 	}
-	else     //TCP
-	{
-		if(netpro&0X01)     //TCP Client    透传模式测试
-		{
-			printf("正在配置ATK-ESP模块,请稍等...\r\n");
-			atk_8266_send_cmd("AT+CIPMUX=0","OK",20);   //0：单连接，1：多连接
-			sprintf((char*)p,"AT+CIPSTART=\"TCP\",\"%s\",%s",(u8*)ipaddr,(u8*)portnum);    //配置目标TCP服务器
-			while(atk_8266_send_cmd(p,"OK",200))
-			{
-			   printf("ATK-ESP 连接TCP Server失败"); //连接失败	
-			}	
-			atk_8266_send_cmd("AT+CIPMODE=1","OK",200);      //传输模式为：透传			
-		}
-		else					//TCP Server
-		{
-            printf("正在配置ATK-ESP模块,请稍等...\r\n");
-			atk_8266_send_cmd("AT+CIPMUX=1","OK",20);   //0：单连接，1：多连接
-			sprintf((char*)p,"AT+CIPSERVER=1,%s",(u8*)serverportnum);    //开启Server模式(0，关闭；1，打开)，端口号为portnum
-			atk_8266_send_cmd(p,"OK",50);    
-		}
-	}   
+	else  if(netpro&0X01)     //TCP Client    透传模式测试
+    {
+        printf("正在配置ATK-ESP模块IP地址,请稍等...\r\n");
+        sprintf((char*)p,"AT+CIPSTART=\"TCP\",\"%s\",%s",(u8*)ipaddr,(u8*)portnum);    //配置目标TCP服务器
+        while(atk_8266_send_cmd(p,"OK",200))
+        {
+           printf("ATK-ESP 连接TCP Server失败"); //连接失败	
+        }               
+        atk_8266_send_cmd("AT+CIPMODE=1","OK",200);      //传输模式为：透传	        
+        constate=atk_8266_consta_check();//得到连接状态
+        if(constate=='+')
+            printf("连接成功\r\n");      //连接状态
+        else 
+        {
+          printf("连接失败....\r\n"); 
+          goto PRESTA;
+        }            
+    }   
     atk_8266_get_wanip(ipbuf);//服务器模式,获取WAN IP
     sprintf((char*)p,"服务器IP地址:%s 端口:%s",ipbuf,(u8*)serverportnum);
     printf("%s\r\n",p);				//显示IP地址和端口	
@@ -99,7 +99,7 @@ u8 atk_8266_wifista_test(void)
         {
             constate=atk_8266_consta_check();//得到连接状态
             if(constate=='+')printf("连接成功\r\n");  //连接状态
-            else printf("连接失败....\r\n"); 	 
+            else atk_8266_linktcp(); 	 
             t=0;
         }
         //atk_8266_at_response(1);

@@ -28,6 +28,7 @@ u8 atk_8266_consta_check(void);
 void atk_8266_get_wanip(u8* ipbuf);
 void atk_8266_get_ip(void);
 u8 atk_8266_netpro_sel(void);
+void atk_8266_linktcp(void);
 void atk_8266_test(void);
 
 u8 atk_8266_wifista_test(void);	//WIFI STA≤‚ ‘
